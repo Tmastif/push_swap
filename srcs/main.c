@@ -6,14 +6,16 @@
 /*   By: ilazar <ilazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 20:07:52 by ilazar            #+#    #+#             */
-/*   Updated: 2024/07/15 21:54:21 by ilazar           ###   ########.fr       */
+/*   Updated: 2024/07/16 19:24:14 by ilazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	error(void);
-int		verify_input(int ac, char **arg);
+// void	input_error(char **av, int to_free);
+// void	print_it(char **arr);
+void	build_a(t_stack *a, char **str, int to_free);
+long	verify_atol(char **av, int i, int to_free);
 
 /*
 • If no parameters are specified,
@@ -25,80 +27,106 @@ Errors include for example: some arguments aren’t integers,
 	some arguments are
 bigger than an integer and/or there are duplicates.
 */
+
 int	main(int ac, char **av)
 {
-	int	*arg;
+	t_stack	*a;
+	t_stack	*b;
 
-	arg = (int *)malloc(sizeof(int) * ac);
-	if (ac > 1)
+	a = NULL;
+	b = NULL;
+	if (ac > 1) // more than prog name
 	{
-		if (verfiy_atoi(ac, av, &arg))
-		{
-			printf("valid input\n"); // start_program();
-			print_arr()
-		}
+		if (ac == 2 && av[1][0] != '\0') // if string not empty
+			av = ft_split(av[1], ' ');
 		else
-			error();
+		{
+			av[ac] = NULL;
+			av++;
+		}
+		build_a(a, av, ac == 2);
+		// print_it(av);
 	}
 	return (0);
 }
 
-int	verfiy_atoi(int ac, char **av, int *arg)
+/* str may be freeable or not
+check for
+		not a number
+		< > max min int
+		duplicate
+
+		if number
+		if range of int
+
+		if list have nodes
+		if no node of same value
+		create new node
+	*/
+
+void	build_a(t_stack *a, char **av, int to_free)
 {
 	long	nbr;
-	int		sign;
-	int		j;
+	int		i;
+	t_stack	*node;
 
-	av[ac] = NULL;
-	ac = 1;
-	while (av[ac])
+	i = 0;
+	// printf("########## free: %d\n", to_free);
+	while (av[i])
 	{
-		sign = 1;
-		nbr = 0;
-		j = 0;
-		if (av[ac][j] == '-')
-		{
-			sign = -1;
-			j++;
-		}
-		while (av[ac][j] != '\0')
-		{
-			if (!ft_isdigit(av[ac][j]))
-				return (0);
-			nbr = (nbr * 10) + av[ac][j] - '0';
-			j++;
-		}
-		arg[ac - 1] = nbr * sign;
-		ac++;
+		nbr = verify_atol(av, i, to_free);
+		if (nbr < INT_MIN || nbr > INT_MAX)
+			input_error(av, to_free);
+		if (found_duplicate(a, (int)nbr))
+			input_error(av, to_free);
+		node = create_node((int)nbr);
+		if (node == NULL)
+			malloc_error();
+		addbottom_node(&a, node);
+		i++;
 	}
-	return (1);
+	print_list(a);
+	free_array(av, to_free);
+	destroy_lst(&a);
 }
 
-// if (nbr > MAX_INT || nbr < MIN_INT)
-// 	return (0);
-int	verify_input(int ac, char **arg)
+// 0 if list empty or no duplicate value found. 1 otherwise
+int	found_duplicate(t_stack *a, int nbr)
 {
-	int	j;
+	t_stack	*tmp;
 
-	arg[ac] = NULL;
-	ac = 1;
-	while (arg[ac])
+	tmp = a;
+	while (tmp != NULL)
 	{
-		j = 0;
-		if (arg[ac][j] == '-') // ignore minus sign in av[ac][j]
-			j++;
-		while (arg[ac][j] != '\0')
-		{
-			if (!ft_isdigit(arg[ac][j])) // check all are digits
-				return (0);
-			j++;
-		}
-		ac++;
+		if (tmp->value == nbr)
+			return (1);
+		tmp = tmp->next;
 	}
-	return (1);
+	return (0);
 }
 
-void	error(void)
+long	verify_atol(char **av, int i, int to_free)
 {
-	ft_printf("Error\n");
+	int sign;
+	char *str;
+	long nbr;
+
+	str = av[i];
+	sign = 1;
+	i = 0;
+	nbr = 0;
+	while ((str[i] <= 13 && str[i] >= 9) || str[i] == ' ')
+		i++;
+	if (str[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
+	while (str[i] != '\0')
+	{
+		if (!ft_isdigit(str[i]))
+			input_error(av, to_free);
+		nbr = (nbr * 10) + str[i++] - '0';
+	}
+	return (nbr * sign);
 }

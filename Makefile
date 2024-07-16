@@ -6,7 +6,7 @@ INCDIR	= ./includes
 OBJDIR	= ./obj
 
 # src / obj files
-SRC		= main.c
+SRC		= main.c utils.c list_cmd.c
 
 OBJ		= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 

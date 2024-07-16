@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilazar <ilazar@student.42berlin.de>        +#+  +:+       +#+        */
+/*   By: ilazar <ilazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 00:54:44 by ilazar            #+#    #+#             */
-/*   Updated: 2024/05/02 00:25:59 by ilazar           ###   ########.fr       */
+/*   Updated: 2024/07/16 14:02:22 by ilazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,27 @@
 static void	free_all(char **strs);
 static int	split_to_words(char **strs, const char *s, char c);
 static char	*make_word(const char *s, char c);
+static int	count_words(const char *s, char c);
+
+char	**ft_split(char const *s, char c)
+{
+	int		words;
+	char	**strs;
+
+	if (s == NULL)
+		return (0);
+	words = count_words(s, c);
+	strs = (char **)malloc(sizeof(char *) * (words + 1));
+	if (strs == NULL)
+		return (NULL);
+	if (!split_to_words(strs, s, c))
+	{
+		free_all(strs);
+		return (NULL);
+	}
+	strs[words] = 0;
+	return (strs);
+}
 
 static int	count_words(const char *s, char c)
 {
@@ -35,26 +56,6 @@ static int	count_words(const char *s, char c)
 		s++;
 	}
 	return (words);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	int		words;
-	char	**strs;
-
-	if (s == NULL)
-		return (0);
-	words = count_words(s, c);
-	strs = (char **) malloc(sizeof(char *) * (words + 1));
-	if (strs == NULL)
-		return (NULL);
-	if (!split_to_words(strs, s, c))
-	{
-		free_all(strs);
-		return (NULL);
-	}
-	strs[words] = 0;
-	return (strs);
 }
 
 static int	split_to_words(char **strs, const char *s, char c)
@@ -94,7 +95,7 @@ static char	*make_word(const char *s, char c)
 	i = 0;
 	while (s[i] != '\0' && s[i] != c)
 		i++;
-	word = (char *) malloc(sizeof(char) * i + 1);
+	word = (char *)malloc(sizeof(char) * i + 1);
 	if (word == NULL)
 		return (NULL);
 	i = 0;
@@ -123,6 +124,7 @@ static void	free_all(char **strs)
 
 /*
 #include <stdio.h>
+
 int	main(int ac, char **av)
 {
 	(void) ac;
