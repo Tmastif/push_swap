@@ -6,7 +6,7 @@
 /*   By: ilazar <ilazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 16:30:39 by ilazar            #+#    #+#             */
-/*   Updated: 2024/07/16 19:25:11 by ilazar           ###   ########.fr       */
+/*   Updated: 2024/07/17 18:06:52 by ilazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	*addbottom_node(t_stack **begin, t_stack *node)
 	}
 	return (node);
 }
-// no good
+
 void	destroy_lst(t_stack **a)
 {
 	t_stack	*tmp;
@@ -65,6 +65,7 @@ void	destroy_lst(t_stack **a)
 		current = tmp;
 	}
 }
+
 void	print_list(t_stack *a)
 {
 	t_stack *tmp;
@@ -73,8 +74,15 @@ void	print_list(t_stack *a)
 	ft_printf("----\n");
 	while (tmp != NULL)
 	{
-		ft_printf(" %d   %p		next: %p	prev: %p\n", tmp->value, tmp,
-						tmp->next, tmp->prev);
+		ft_printf(" %d   		", tmp->value);
+		if ((*tmp).next)
+			ft_printf("next: %d     ", (*tmp).next->value);
+		else
+			ft_printf("next: Null     ");
+		if ((*tmp).prev)
+			ft_printf("prev: %d\n", (*tmp).prev->value);
+		else
+			ft_printf("prev: Null\n");
 		tmp = tmp->next;
 	}
 	ft_printf("----\n");

@@ -6,7 +6,7 @@
 /*   By: ilazar <ilazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 20:04:58 by ilazar            #+#    #+#             */
-/*   Updated: 2024/07/16 19:24:31 by ilazar           ###   ########.fr       */
+/*   Updated: 2024/07/17 14:06:42 by ilazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,19 @@ typedef struct s_stack
 	struct s_stack	*prev;
 }					t_stack;
 
-// utils
-void				input_error(char **av, int to_free);
-void				print_it(char **arr);
+// list init
+void				build_a(t_stack **a, char **str, int to_free);
+long				verify_atol(t_stack **a, char **av, int i, int to_free);
+int					found_duplicate(t_stack *a, int nbr);
 void				free_array(char **av, int to_free);
 
-//
-int					found_duplicate(t_stack *a, int nbr);
+// stack commands
+void				swap_stk(t_stack **stk);
+
+// error utils
+void				input_error(t_stack **a, char **av, int to_free);
+void				print_it(char **arr);
+void				malloc_error(void);
 
 // list commands
 t_stack				*create_node(int nbr);

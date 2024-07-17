@@ -6,7 +6,8 @@ INCDIR	= ./includes
 OBJDIR	= ./obj
 
 # src / obj files
-SRC		= main.c utils.c list_cmd.c
+SRC		= main.c error_utils.c list_cmd.c stack_cmd.c \
+		stack_a_init.c
 
 OBJ		= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 
