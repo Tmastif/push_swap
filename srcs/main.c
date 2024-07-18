@@ -6,7 +6,7 @@
 /*   By: ilazar <ilazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 20:07:52 by ilazar            #+#    #+#             */
-/*   Updated: 2024/07/17 17:34:53 by ilazar           ###   ########.fr       */
+/*   Updated: 2024/07/18 18:04:46 by ilazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ int	main(int ac, char **av)
 			av++;
 		}
 		build_a(&a, av, ac == 2);
-		print_list(a);
-		printf("doing a swap:\n");
-		swap_stk(&a);
-		print_list(a);
+		print_a(a);
+		push_b(&a, &b);
+		swap_a(&a);
+		swap_b(&b);
+		print_ab(a, b);
 		destroy_lst(&a);
 	}
 	return (0);

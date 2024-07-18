@@ -1,72 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_cmd.c                                         :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilazar <ilazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/16 16:30:39 by ilazar            #+#    #+#             */
-/*   Updated: 2024/07/18 16:57:03 by ilazar           ###   ########.fr       */
+/*   Created: 2024/07/18 17:25:22 by ilazar            #+#    #+#             */
+/*   Updated: 2024/07/18 17:41:49 by ilazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*create_node(int nbr)
-{
-	t_stack	*new;
-
-	new = malloc(sizeof(t_stack));
-	if (!new)
-		return (NULL);
-	new->value = nbr;
-	new->next = NULL;
-	new->prev = NULL;
-	return (new);
-}
-t_stack	*lstlast(t_stack *begin)
-{
-	if (begin == NULL)
-		return (NULL);
-	while (begin->next != NULL)
-		begin = begin->next;
-	return (begin);
-}
-
-t_stack	*addbottom_node(t_stack **begin, t_stack *node)
-{
-	t_stack	*tmp;
-
-	if (begin == NULL)
-		return (NULL);
-	if (*begin == NULL)
-		*begin = node;
-	else
-	{
-		tmp = lstlast(*begin);
-		tmp->next = node;
-		node->prev = tmp;
-	}
-	return (node);
-}
-
-void	destroy_lst(t_stack **a)
-{
-	t_stack	*tmp;
-	t_stack	*current;
-
-	if (!a)
-		return ;
-	current = *a;
-	while (current != NULL)
-	{
-		tmp = current->next;
-		free(current);
-		current = tmp;
-	}
-}
-
-void	print_list(t_stack *a, char c)
+static void	print_list(t_stack *a, char c)
 {
 	t_stack	*tmp;
 
@@ -91,4 +37,19 @@ void	print_list(t_stack *a, char c)
 		tmp = tmp->next;
 	}
 	ft_printf("----%c\n", c);
+}
+
+void	print_a(t_stack *a)
+{
+	print_list(a, 'a');
+}
+
+void	print_b(t_stack *a)
+{
+	print_list(a, 'b');
+}
+void	print_ab(t_stack *a, t_stack *b)
+{
+	print_list(a, 'a');
+	print_list(b, 'b');
 }

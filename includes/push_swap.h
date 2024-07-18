@@ -6,7 +6,7 @@
 /*   By: ilazar <ilazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 20:04:58 by ilazar            #+#    #+#             */
-/*   Updated: 2024/07/17 14:06:42 by ilazar           ###   ########.fr       */
+/*   Updated: 2024/07/18 18:02:13 by ilazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,24 @@ long				verify_atol(t_stack **a, char **av, int i, int to_free);
 int					found_duplicate(t_stack *a, int nbr);
 void				free_array(char **av, int to_free);
 
-// stack commands
-void				swap_stk(t_stack **stk);
+// swap
+void				swap_a(t_stack **a);
+void				swap_b(t_stack **b);
+void				swap_ss(t_stack **a, t_stack **b);
+
+// push
+void				push_a(t_stack **a, t_stack **b);
+void				push_b(t_stack **a, t_stack **b);
+
+// rotate
+void				ro_a(t_stack **a);
+void				ro_b(t_stack **b);
+void				ro_ab(t_stack **a, t_stack **b);
+
+// rev rotate
+void				revro_a(t_stack **a);
+void				revro_b(t_stack **b);
+void				revro_ab(t_stack **a, t_stack **b);
 
 // error utils
 void				input_error(t_stack **a, char **av, int to_free);
@@ -45,12 +61,16 @@ void				malloc_error(void);
 
 // list commands
 t_stack				*create_node(int nbr);
-void				print_list(t_stack *a);
-void				*addbottom_node(t_stack **begin, t_stack *node);
+t_stack				*addbottom_node(t_stack **begin, t_stack *node);
 t_stack				*lstlast(t_stack *begin);
 void				destroy_lst(t_stack **a);
 
 // errors
 void				malloc_error(void);
+
+// print
+void				print_ab(t_stack *a, t_stack *b);
+void				print_a(t_stack *a);
+void				print_b(t_stack *a);
 
 #endif
