@@ -7,7 +7,8 @@ OBJDIR	= ./obj
 
 # src / obj files
 SRC		= main.c error_utils.c list_cmd.c push.c \
-		stack_a_init.c print.c swap.c rotate.c rev_rotate.c
+		stack_a_init.c print.c swap.c rotate.c rev_rotate.c \
+		small_sorts.c
 
 OBJ		= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 

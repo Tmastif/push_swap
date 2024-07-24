@@ -6,7 +6,7 @@
 /*   By: ilazar <ilazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 20:04:58 by ilazar            #+#    #+#             */
-/*   Updated: 2024/07/18 18:02:13 by ilazar           ###   ########.fr       */
+/*   Updated: 2024/07/24 16:42:49 by ilazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ typedef struct s_stack
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }					t_stack;
+
+// small sort
+int					find_max(t_stack **a);
+int					lstsize(t_stack **a);
+void				three_sort(t_stack **a);
 
 // list init
 void				build_a(t_stack **a, char **str, int to_free);
