@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilazar <ilazar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: inbar <inbar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 20:07:52 by ilazar            #+#    #+#             */
-/*   Updated: 2024/07/24 16:45:12 by ilazar           ###   ########.fr       */
+/*   Updated: 2024/07/25 14:35:17 by inbar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ int	main(int ac, char **av)
 		build_a(&a, av, ac == 2);
 		// printf("max: %d\n", find_max(&a));
 		// printf("size: %d\n", lstsize(&a));
-		print_a(a);
-		three_sort(&a);
-		print_a(a);
+		push_b(&a, &b);
+		print_ab(a, b);
+
+		//three_sort(&a);
 		destroy_lst(&a);
 		// destroy_lst(&b);
 	}

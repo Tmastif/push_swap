@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilazar <ilazar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: inbar <inbar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 20:04:58 by ilazar            #+#    #+#             */
-/*   Updated: 2024/07/24 16:42:49 by ilazar           ###   ########.fr       */
+/*   Updated: 2024/07/25 14:37:03 by inbar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ typedef struct s_stack
 	int				index;
 	struct s_stack	*next;
 	struct s_stack	*prev;
+	struct s_stack	*target;
 }					t_stack;
+
+//target
+void    find_target(t_stack *node, t_stack **b);
 
 // small sort
 int					find_max(t_stack **a);
