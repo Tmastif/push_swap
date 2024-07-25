@@ -6,7 +6,7 @@
 /*   By: inbar <inbar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 14:17:59 by inbar             #+#    #+#             */
-/*   Updated: 2024/07/25 14:38:23 by inbar            ###   ########.fr       */
+/*   Updated: 2024/07/25 16:28:18 by inbar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,15 @@ void    find_target(t_stack *node, t_stack **b)
         return ;
     tmp = *b;
     node->target = *b;
-    potential = node->target;
+    potential = find_min(b);
+    if (node->value < potential->value) //smallest value
+    {
+        node->target = find_max(b);
+        return ;
+    }
     while (tmp != NULL)
     {
-        if (node->value > tmp->value && tmp->value < potential->value)
+        if (node->value > tmp->value && tmp->value > potential->value)
            potential = tmp;
         tmp = tmp->next;
     }

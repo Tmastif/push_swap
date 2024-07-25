@@ -14,7 +14,7 @@ OBJ		= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 
 # compiler
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -fPIC
 
 
 # ft library
@@ -35,11 +35,8 @@ $(OBJDIR)/%.o:$(SRCDIR)/%.c
 $(FT_LIB):
 	@make -C $(FT)
 
-$(MLX_LIB):
-	@make -C $(MLX)
-
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(FT_LNK) $(FT_LIB) -lm -o $(NAME)
+	$(CC) $(OBJ) $(FT_LNK) $(FT_LIB) -fPIC -lm -o $(NAME)
 
 clean:
 	rm -rf $(OBJDIR)

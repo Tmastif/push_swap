@@ -18,11 +18,13 @@ void	ft_putnbr_fd(long n, int fd)
 {
 	long	nbr;
 	char	c;
+	int	x;
 
 	nbr = n;
 	if (nbr < 0)
 	{
-		write(fd, "-", 1);
+		x = write(fd, "-", 1);
+		(void)x;
 		nbr = nbr * -1;
 	}
 	if (nbr > 9)

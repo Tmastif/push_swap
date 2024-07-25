@@ -6,7 +6,7 @@
 /*   By: inbar <inbar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 20:04:58 by ilazar            #+#    #+#             */
-/*   Updated: 2024/07/25 14:37:03 by inbar            ###   ########.fr       */
+/*   Updated: 2024/07/25 16:25:22 by inbar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ typedef struct s_stack
 void    find_target(t_stack *node, t_stack **b);
 
 // small sort
-int					find_max(t_stack **a);
+t_stack				*find_max(t_stack **a);
+t_stack				*find_min(t_stack **a);
 int					lstsize(t_stack **a);
 void				three_sort(t_stack **a);
 
