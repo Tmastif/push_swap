@@ -49,7 +49,7 @@ DEPS	=		$(OBJS:.o=.d)
 # ------------  FLAGS  ------------------------------------------------------- #
 CC		=		cc
 RM		=		rm -rf
-CFLGS	=		-Wall -Werror -Wextra -fPIC
+CFLGS	=		-Wall -Werror -Wextra
 IFLGS	=		-I $(HDR_DIR)
 DFLGS	=		-MMD -MP -O1
 

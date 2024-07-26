@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inbar <inbar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ilazar <ilazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 20:07:52 by ilazar            #+#    #+#             */
-/*   Updated: 2024/07/25 15:26:09 by inbar            ###   ########.fr       */
+/*   Updated: 2024/07/26 18:56:12 by ilazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int ac, char **av)
 {
 	t_stack	*a;
 	t_stack	*b;
+	t_stack	*tmp;
 
 	a = NULL;
 	b = NULL;
@@ -40,7 +41,13 @@ int	main(int ac, char **av)
 		printf("find targ:et of *a\n");
 		find_target(a, &b);
 		printf("target value of: %d is %d\n", (*a).value, (*a).target->value);
-		//three_sort(&a);
+		tmp = a;
+		set_index(&a);
+		while (tmp)
+		{
+			printf("index of %d, is: %d\n", tmp->value, tmp->index);
+			tmp = tmp->next;
+		}
 		destroy_lst(&a);
 		// destroy_lst(&b);
 	}
