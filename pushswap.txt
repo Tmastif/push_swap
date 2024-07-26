@@ -33,6 +33,8 @@ for every node of a:
 + price of transfering target node to the top
 - duplicte movements
 
+median: stack length divide by 2
+
 set index for a and b
 
 

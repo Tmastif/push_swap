@@ -6,7 +6,7 @@
 /*   By: ilazar <ilazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 20:07:52 by ilazar            #+#    #+#             */
-/*   Updated: 2024/07/26 18:56:12 by ilazar           ###   ########.fr       */
+/*   Updated: 2024/07/26 19:47:07 by ilazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int ac, char **av)
 			printf("index of %d, is: %d\n", tmp->value, tmp->index);
 			tmp = tmp->next;
 		}
-		destroy_lst(&a);
+		find_push_price(a, &a, &b);
 		// destroy_lst(&b);
 	}
 	return (0);

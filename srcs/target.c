@@ -6,7 +6,7 @@
 /*   By: ilazar <ilazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 14:17:59 by inbar             #+#    #+#             */
-/*   Updated: 2024/07/26 18:54:58 by ilazar           ###   ########.fr       */
+/*   Updated: 2024/07/26 19:47:43 by ilazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	find_target(t_stack *node, t_stack **b)
 
 void	set_index(t_stack **a)
 {
-	t_stack *tmp;
-	int index;
+	t_stack	*tmp;
+	int		index;
 
 	index = 0;
 	if (!a || !*a)
@@ -51,4 +51,20 @@ void	set_index(t_stack **a)
 		index++;
 		tmp = tmp->next;
 	}
+}
+
+void	find_push_price(t_stack *node, t_stack **a, t_stack **b)
+{
+	int median;
+	int stk_a_size;
+	int stk_b_size;
+
+	(void)node;
+
+	stk_a_size = lstsize(a);
+	stk_b_size = lstsize(b);
+
+	median = stk_a_size / 2;
+	printf("stk a size: %d  stk b size: %d  median a: %d\n", stk_a_size,
+		stk_b_size, median);
 }
