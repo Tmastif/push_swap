@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inbar <inbar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ilazar <ilazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 20:04:58 by ilazar            #+#    #+#             */
-/*   Updated: 2024/09/04 13:59:22 by inbar            ###   ########.fr       */
+/*   Updated: 2024/09/04 17:45:16 by ilazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ typedef struct s_stack
 void				find_target(t_stack **a, t_stack **b);
 void				set_index(t_stack **a);
 void				find_push_price(t_stack **a, t_stack **b);
+
+// cheapest
+t_stack				*get_cheapest(t_stack **a);
+void				move_nodes(t_stack **a, t_stack **b, t_stack *cheapest);
 
 // small sort
 t_stack				*find_max(t_stack **a);
