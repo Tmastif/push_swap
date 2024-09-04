@@ -6,19 +6,20 @@
 /*   By: inbar <inbar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 20:07:52 by ilazar            #+#    #+#             */
-/*   Updated: 2024/09/04 12:38:51 by inbar            ###   ########.fr       */
+/*   Updated: 2024/09/04 14:55:53 by inbar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 void 	print_targets(t_stack *a);
+void 	print_prices(t_stack *a);
 
 int	main(int ac, char **av)
 {
 	t_stack	*a;
 	t_stack	*b;
-	t_stack	*tmp;
+	//t_stack	*tmp;
 
 	a = NULL;
 	b = NULL;
@@ -40,20 +41,31 @@ int	main(int ac, char **av)
 		push_b(&a, &b);
 		push_b(&a, &b);
 		print_ab(a, b);
+		set_index(&a);
+		set_index(&b);
 		find_target(&a, &b);
 		print_targets(a);
-		set_index(&a);
-		tmp = a;
-		while (tmp)
-		{
-			printf("index of %d, is: %d\n", tmp->value, tmp->index);
-			tmp = tmp->next;
-		}
+		find_push_price(&a, &b);
+		print_prices(a);
 		print_ab(a, b);
-		//find_push_price(a, &a, &b);
 		// destroy_lst(&b);
 	}
 	return (0);
+}
+
+void 	print_prices(t_stack *a)
+{
+	t_stack *tmp;
+
+	if (!a)
+		return ;
+	tmp = a;
+	while (tmp)
+	{
+		printf("price of %d is %d$\n", tmp->value, tmp->push_price);
+		//printf("tmp->next: %d \n", tmp->next->value);
+		tmp = tmp->next;
+	}
 }
 
 void 	print_targets(t_stack *a)

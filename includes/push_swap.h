@@ -6,7 +6,7 @@
 /*   By: inbar <inbar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 20:04:58 by ilazar            #+#    #+#             */
-/*   Updated: 2024/09/04 12:00:03 by inbar            ###   ########.fr       */
+/*   Updated: 2024/09/04 13:59:22 by inbar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_stack
 {
 	int				value;
 	int				index;
-	int				below_median;
+	int				upper_half;
 	int				top_price;
 	int				push_price;
 	struct s_stack	*next;
@@ -36,7 +36,7 @@ typedef struct s_stack
 // target
 void				find_target(t_stack **a, t_stack **b);
 void				set_index(t_stack **a);
-void				find_push_price(t_stack **a);
+void				find_push_price(t_stack **a, t_stack **b);
 
 // small sort
 t_stack				*find_max(t_stack **a);
