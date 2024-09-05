@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   small_sorts.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inbar <inbar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ilazar <ilazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:58:06 by ilazar            #+#    #+#             */
-/*   Updated: 2024/07/25 16:24:45 by inbar            ###   ########.fr       */
+/*   Updated: 2024/09/05 20:07:04 by ilazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack *find_max(t_stack **a)
+t_stack	*find_max(t_stack **a)
 {
 	t_stack	*tmp;
 	t_stack	*max;
@@ -67,11 +67,11 @@ int	lstsize(t_stack **a)
 
 void	three_sort(t_stack **a)
 {
+	t_stack	*max;
+	t_stack	*tmp;
+
 	// biggest at the bottom
 	// swap two others if bigger of the two is above
-	t_stack *max;
-	t_stack *tmp;
-
 	max = find_max(a);
 	if (max == *a) // if max is first bring max to bottom
 		ro_a(a);
@@ -81,4 +81,21 @@ void	three_sort(t_stack **a)
 	tmp = (*a)->next;
 	if ((*a)->value > tmp->value)
 		swap_a(a);
+}
+
+// returns 1 if stack is sorted or empty. 0 otherwise
+int	is_sorted(t_stack **a)
+{
+	t_stack *tmp;
+
+	if (!a || !*a)
+		return (1);
+	tmp = *a;
+	while (tmp->next)
+	{
+		if (tmp->value > tmp->next->value)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
 }

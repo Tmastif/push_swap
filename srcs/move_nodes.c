@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cheapest.c                                         :+:      :+:    :+:   */
+/*   move_nodes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilazar <ilazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 18:46:40 by ilazar            #+#    #+#             */
-/*   Updated: 2024/09/04 18:31:20 by ilazar           ###   ########.fr       */
+/*   Updated: 2024/09/05 20:07:00 by ilazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,10 @@ t_stack	*get_cheapest(t_stack **a)
 			cheapest = tmp;
 		tmp = tmp->next;
 	}
-	printf("chepeast: %d target: %d\n", cheapest->value,
-		cheapest->target->value);
 	return (cheapest);
 }
 
-void	move_nodes(t_stack **a, t_stack **b, t_stack *cheapest)
+void	move_nodes_b(t_stack **a, t_stack **b, t_stack *cheapest)
 {
 	if (!a || !b || !*a || !*b || !cheapest)
 		return ;
@@ -61,11 +59,13 @@ void	move_nodes(t_stack **a, t_stack **b, t_stack *cheapest)
 static void	rotate_together(t_stack **a, t_stack **b, t_stack *cheapest)
 {
 	if (cheapest->upper_half == cheapest->target->upper_half)
-		while (*a != cheapest || *b != cheapest->target)
+	{
+		while (*a != cheapest && *b != cheapest->target)
 		{
 			if (cheapest->upper_half == 1)
 				ro_ab(a, b);
 			else
 				revro_ab(a, b);
 		}
+	}
 }

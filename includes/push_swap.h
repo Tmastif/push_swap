@@ -6,7 +6,7 @@
 /*   By: ilazar <ilazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 20:04:58 by ilazar            #+#    #+#             */
-/*   Updated: 2024/09/04 17:45:16 by ilazar           ###   ########.fr       */
+/*   Updated: 2024/09/05 19:46:40 by ilazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,25 @@ typedef struct s_stack
 	struct s_stack	*target;
 }					t_stack;
 
+// return nodes
+void				return_nodes_a(t_stack **a, t_stack **b);
+void				min_to_top(t_stack **a);
+
+// move nodes
+t_stack				*get_cheapest(t_stack **a);
+void				move_nodes_b(t_stack **a, t_stack **b, t_stack *cheapest);
+
 // target
 void				find_target(t_stack **a, t_stack **b);
 void				set_index(t_stack **a);
 void				find_push_price(t_stack **a, t_stack **b);
-
-// cheapest
-t_stack				*get_cheapest(t_stack **a);
-void				move_nodes(t_stack **a, t_stack **b, t_stack *cheapest);
 
 // small sort
 t_stack				*find_max(t_stack **a);
 t_stack				*find_min(t_stack **a);
 int					lstsize(t_stack **a);
 void				three_sort(t_stack **a);
+int					is_sorted(t_stack **a);
 
 // list init
 void				build_a(t_stack **a, char **str, int to_free);

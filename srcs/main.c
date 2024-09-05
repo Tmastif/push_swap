@@ -6,7 +6,7 @@
 /*   By: ilazar <ilazar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 20:07:52 by ilazar            #+#    #+#             */
-/*   Updated: 2024/09/04 18:33:55 by ilazar           ###   ########.fr       */
+/*   Updated: 2024/09/05 20:07:02 by ilazar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	main(int ac, char **av)
 	t_stack	*a;
 	t_stack	*b;
 
-	// t_stack	*tmp;
 	a = NULL;
 	b = NULL;
 	if (ac > 1) // more than prog name
@@ -36,8 +35,11 @@ int	main(int ac, char **av)
 			av++;
 		}
 		build_a(&a, av, ac == 2);
-		push_swap(&a, &b);
-		// destroy_lst(&b);
+		if (!is_sorted(&a))
+			push_swap(&a, &b);
+		// print_ab(a, b);
+		destroy_lst(&a);
+		destroy_lst(&b);
 	}
 	return (0);
 }
@@ -48,21 +50,33 @@ void	push_swap(t_stack **a, t_stack **b)
 	t_stack	*tmp;
 
 	a_size = lstsize(a);
+	if (a_size < 3)
+	{
+		min_to_top(a);
+		return ;
+	}
+	if (a_size == 3)
+	{
+		three_sort(a);
+		return ;
+	}
 	push_b(a, b);
 	push_b(a, b);
+	a_size -= 2;
 	while (a_size > 3)
 	{
-		print_ab(*a, *b);
+		// print_ab(*a, *b);
 		set_index(a);
 		set_index(b);
 		find_target(a, b);
 		find_push_price(a, b);
 		tmp = get_cheapest(a);
-		move_nodes(a, b, tmp);
-		// print_ab(*a, *b);
+		move_nodes_b(a, b, tmp);
 		a_size--;
 	}
-	// why it doesnt stop when stack a is only 3?
+	// printf("3 sort:\n");
+	three_sort(a);
+	return_nodes_a(a, b);
 }
 
 void	print_prices(t_stack *a)
